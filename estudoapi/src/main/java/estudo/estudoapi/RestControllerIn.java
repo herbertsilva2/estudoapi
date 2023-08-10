@@ -2,21 +2,29 @@ package estudo.estudoapi;
 
 import estudo.estudoapi.services.EstudoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/estudo")
+@RequestMapping(value = "/users", produces = { "application/json" })
 public class RestControllerIn {
 
     @Autowired
     EstudoService estudoService;
 
-    @GetMapping("/primeira-consulta")
-    public List<Usuario> primeiraConsulta() {
+    @GetMapping("/listar-todos")
+    public List<Usuario> listarTodos() {
         return estudoService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Usuario consultarUsuario(@PathVariable Integer id) {
+        return estudoService.findUsuarioById(id);
+    }
+
+    @PostMapping(value="/adicionar-usuario", consumes="application/json")
+    public void adicionarUsuario(@RequestBody Usuario usuario) {
+        estudoService.save(usuario);
     }
 }

@@ -7,8 +7,9 @@ import java.util.List;
 
 public interface EstudoService extends JpaRepository<Usuario, Integer> {
 
+    public List<Usuario> findAll();
     public Usuario findUsuarioById(Integer id);
 
-    public List<Usuario> findAll();
+    public Usuario save(Usuario usuario);
 
 }

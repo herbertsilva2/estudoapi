@@ -1,5 +1,6 @@
 package estudo.estudoapi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 //import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Usuario implements Serializable {
     private Integer id;
     @Column(name = "name", length = 255, nullable = true, unique = false)
     private String name;
+//    @JsonProperty("lastname")
     @Column(name = "lastname", length = 255, nullable = true, unique = false)
     private String lastName;
     @Column(name = "cpf", nullable = false, unique = true)
@@ -51,6 +53,12 @@ public class Usuario implements Serializable {
     }
 
     public Usuario() { }
+
+    public Usuario(String name, String lastName, String cpf) {
+        this.name = name;
+        this.lastName = lastName;
+        this.cpf = cpf;
+    }
 
     public Usuario(Integer id, String name, String lastName, String cpf) {
         this.id = id;
