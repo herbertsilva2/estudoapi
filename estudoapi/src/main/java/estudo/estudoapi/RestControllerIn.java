@@ -27,4 +27,14 @@ public class RestControllerIn {
     public void adicionarUsuario(@RequestBody Usuario usuario) {
         estudoService.save(usuario);
     }
+
+    @PostMapping(value="/atualizar-usuario", consumes="application/json")
+    public void atualizarUsuario(@RequestBody Usuario usuario) {
+        estudoService.save(usuario);
+    }
+
+    @PostMapping(value="/remover-usuario", consumes="application/json")
+    public void removerUsuario(@RequestBody Usuario usuario) {
+        estudoService.delete(usuario);
+    }
 }
